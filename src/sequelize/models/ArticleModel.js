@@ -26,6 +26,11 @@ Article.init({
         type: Sequelize.STRING,
         allowNull: false
     },
+    voteUp: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        defaultValue: 0
+    },
     createdAt: {
         type: Sequelize.TIME,
         allowNull: false
