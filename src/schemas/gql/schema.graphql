@@ -4,6 +4,7 @@
 # import User from "models/user.graphql"
 # import Post from "models/article.graphql"
 # import AuthPayload from "models/authpayload.graphql"
+# import VoteUp from "models/voteup.graphql"
 
 schema {
     query: Query

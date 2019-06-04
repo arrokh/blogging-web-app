@@ -18,7 +18,9 @@ module.exports = {
         voteUpArticle: ArticleHandler.voteUp
     },
     Subscription: {
-        onAddedArticle: ArticleHandler.onAdded
+        //Article
+        onAddedArticle: ArticleHandler.onAdded,
+        onVoteUpArticle: ArticleHandler.onVoteUpArticle
     },
     Article: {
         postedBy: ArticleHandler.postedBy

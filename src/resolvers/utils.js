@@ -34,7 +34,8 @@ async function getUserAuth(context, checkIsUserExist = false) {
 
         return {
             userId,
-            isUserExist: true
+            isUserExist: true,
+            user
         }
     }
 

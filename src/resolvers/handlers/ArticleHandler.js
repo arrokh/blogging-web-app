@@ -5,6 +5,7 @@ const {User} = require('../../sequelize/models/UserModel');
 const {getUserId, getUserAuth} = require('../utils');
 
 const POST_ADDED = 'POST_ADDED';
+const VOTE_UP_ARTICLE = 'VOTE_UP_ARTICLE';
 
 const pubsub = new PubSub();
 
@@ -43,7 +44,7 @@ module.exports = {
         return await User.findOne({where: {id: parent.userId}}).then(data => data);
     },
     voteUp: async function (parent, args, context, info) {
-        const {userId} = await getUserAuth(context);
+        const {userId, user} = await getUserAuth(context, true);
 
         const article = await Article.findOne({where: {id: args.id}}).then(data => data);
 
@@ -53,10 +54,21 @@ module.exports = {
         // Add 1 vote
         article.set('voteUp', ++article.voteUp);
 
-        return await article.save().then(data => data);
+
+        return await article.save().then(data => {
+            pubsub.publish(VOTE_UP_ARTICLE, {
+                article: data.dataValues,
+                user
+            });
+            return data;
+        });
     },
     onAdded: {
         resolve: payload => payload,
         subscribe: () => pubsub.asyncIterator([POST_ADDED])
+    },
+    onVoteUpArticle: {
+        resolve: payload => payload,
+        subscribe: () => pubsub.asyncIterator([VOTE_UP_ARTICLE])
     }
 };
