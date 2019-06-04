@@ -2,7 +2,10 @@ const jwt = require('jsonwebtoken');
 const APP_SECRET = 'nasigoreng-ecenggondok-beraskencur';
 
 function getUserId(context) {
-    const authorization = context.request.get('Authorization');
+    console.log("'''''''''''''''''''''''''''''''''");
+    console.log();
+
+    const authorization = context.req.headers.authorization;
 
     if (!authorization)
         throw new Error('Not authenticated.');

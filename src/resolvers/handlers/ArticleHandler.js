@@ -1,6 +1,7 @@
 const {PubSub} = require('apollo-server');
 const uuid = require('uuid/v4');
 const {Article} = require('../../sequelize/models/ArticleModel');
+const {getUserId} = require('../utils');
 
 const POST_ADDED = 'POST_ADDED';
 
@@ -11,22 +12,16 @@ module.exports = {
         return await Article.findAll().then(data => data);
     },
     getById: async function (parent, args, context, info) {
-        const article = await Article
-            .findAll({
-                where: {
-                    id: args.id
-                }
-            })
-            .then(data => data);
+        const article = await Article.findOne({where: {id: args.id}}).then(data => data);
 
-        if (article.length < 1)
+        if (!article)
             throw new Error('Article with passed ID was not found');
         else
-            return article[0].dataValues;
+            return article;
     },
     add: async function (parent, args, context, info) {
         const id = uuid();
-        const userId = uuid();
+        const userId = getUserId(context);
 
         const res = await Article
             .create({
