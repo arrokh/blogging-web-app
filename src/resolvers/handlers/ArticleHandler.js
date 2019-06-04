@@ -39,18 +39,12 @@ module.exports = {
 
         const article = res.dataValues;
 
-        pubsub.publish(POST_ADDED, {
-            onAdded: {
-                article
-            }
-        });
+        pubsub.publish(POST_ADDED, article);
 
         return article;
     },
     onAdded: {
-        resolve: payload => {
-            return {customData: payload};
-        },
+        resolve: payload => payload,
         subscribe: () => pubsub.asyncIterator([POST_ADDED])
     }
 };
