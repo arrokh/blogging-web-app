@@ -1,6 +1,7 @@
 const UserHandler = require('./handlers/UserHandler');
 const ArticleHandler = require('./handlers/ArticleHandler');
 const AuthHandler = require('./handlers/AuthHandler');
+const ScalarHandler = require('./handlers/ScalarHandler');
 
 module.exports = {
     Query: {
@@ -27,5 +28,7 @@ module.exports = {
     },
     User: {
         listArticles: UserHandler.listArticles
-    }
+    },
+    // Scalar Data Type
+    Date: ScalarHandler.date
 };
