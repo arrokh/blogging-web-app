@@ -1,5 +1,6 @@
 const UserHandler = require('./handlers/UserHandler');
 const ArticleHandler = require('./handlers/ArticleHandler');
+const AuthHandler = require('./handlers/AuthHandler');
 
 module.exports = {
     Query: {
@@ -9,6 +10,8 @@ module.exports = {
         article: ArticleHandler.getById
     },
     Mutation: {
+        login: AuthHandler.login,
+        register: AuthHandler.register,
         addArticle: ArticleHandler.add
     },
     Subscription: {

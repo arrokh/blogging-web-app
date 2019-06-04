@@ -3,6 +3,7 @@
 # import Subscription from "subscription.graphql"
 # import User from "models/user.graphql"
 # import Post from "models/article.graphql"
+# import AuthPayload from "models/authpayload.graphql"
 
 schema {
     query: Query

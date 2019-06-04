@@ -1,3 +1,7 @@
 type Mutation {
+    # Auth
+    register(name: String!, email: String!, password: String!): AuthPayload
+    login(email: String!, password: String!): AuthPayload
+    # Article
     addArticle(title: String!, content: String!, url: String!): Article!
 }
