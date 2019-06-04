@@ -10,9 +10,12 @@ module.exports = {
         article: ArticleHandler.getById
     },
     Mutation: {
+        // Auth
         login: AuthHandler.login,
         register: AuthHandler.register,
-        addArticle: ArticleHandler.add
+        //Article
+        addArticle: ArticleHandler.add,
+        voteUpArticle: ArticleHandler.voteUp
     },
     Subscription: {
         onAddedArticle: ArticleHandler.onAdded

@@ -2,7 +2,7 @@ const {PubSub} = require('apollo-server');
 const uuid = require('uuid/v4');
 const {Article} = require('../../sequelize/models/ArticleModel');
 const {User} = require('../../sequelize/models/UserModel');
-const {getUserId} = require('../utils');
+const {getUserId, getUserAuth} = require('../utils');
 
 const POST_ADDED = 'POST_ADDED';
 
@@ -39,8 +39,21 @@ module.exports = {
 
         return article;
     },
-    postedBy: async function(parent, args, context, info) {
+    postedBy: async function (parent, args, context, info) {
         return await User.findOne({where: {id: parent.userId}}).then(data => data);
+    },
+    voteUp: async function (parent, args, context, info) {
+        const {userId} = await getUserAuth(context);
+
+        const article = await Article.findOne({where: {id: args.id}}).then(data => data);
+
+        if (!article)
+            throw  new Error('Article with passed Id was not found');
+
+        // Add 1 vote
+        article.set('voteUp', ++article.voteUp);
+
+        return await article.save().then(data => data);
     },
     onAdded: {
         resolve: payload => payload,

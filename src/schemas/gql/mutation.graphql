@@ -4,4 +4,5 @@ type Mutation {
     login(email: String!, password: String!): AuthPayload
     # Article
     addArticle(title: String!, content: String!, url: String!): Article!
+    voteUpArticle(id: ID!): Article!
 }
