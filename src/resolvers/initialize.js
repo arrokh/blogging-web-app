@@ -16,5 +16,8 @@ module.exports = {
     },
     Subscription: {
         onAddedArticle: ArticleHandler.onAdded
+    },
+    Article: {
+        postedBy: ArticleHandler.postedBy
     }
 };

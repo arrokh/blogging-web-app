@@ -1,6 +1,7 @@
 const {PubSub} = require('apollo-server');
 const uuid = require('uuid/v4');
 const {Article} = require('../../sequelize/models/ArticleModel');
+const {User} = require('../../sequelize/models/UserModel');
 const {getUserId} = require('../utils');
 
 const POST_ADDED = 'POST_ADDED';
@@ -37,6 +38,9 @@ module.exports = {
         pubsub.publish(POST_ADDED, article);
 
         return article;
+    },
+    postedBy: async function(parent, args, context, info) {
+        return await User.findOne({where: {id: parent.userId}}).then(data => data);
     },
     onAdded: {
         resolve: payload => payload,
