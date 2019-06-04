@@ -1,6 +1,8 @@
 require('dotenv').config();
 
-const {ApolloServer} = require('apollo-server');
+const express = require('express');
+const {ApolloServer} = require('apollo-server-express');
+
 const sequelize = require('./sequelize/initialize');
 const typeDefs = require('./schemas/initialize');
 const resolvers = require('./resolvers/initialize');
@@ -11,6 +13,12 @@ const server = new ApolloServer({
     context: request => request,
 });
 
-server.listen().then(({url}) => {
-    console.log(`🚀 Server ready at ${url}`);
+const app = express();
+const PORT = process.env.port|| 5000;
+
+server.applyMiddleware({app, path: '/graphql'});
+
+app.listen({port: process.env.port}, () => {
+    console.log(`🚀 Server started on port ${PORT}`);
+
 });
