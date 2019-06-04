@@ -1,17 +1,11 @@
-# import User from "user.graphql"
-# import Post from "article.graphql"
+# import Query from "query.graphql"
+# import Mutation from "mutation.graphql"
+# import Subscription from "subscription.graphql"
+# import User from "models/user.graphql"
+# import Post from "models/article.graphql"
 
-type Query {
-    user(id: ID!): User!
-    users: [User]!
-    article(id: ID!): Article
-    articles: [Article]
-}
-
-type Mutation {
-    addArticle(title: String!, content: String!, url: String!): Article!
-}
-
-type Subscription {
-    onAddedArticle: Article
+schema {
+    query: Query
+    mutation: Mutation
+    subscription: Subscription
 }
