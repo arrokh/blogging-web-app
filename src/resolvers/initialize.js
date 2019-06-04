@@ -19,5 +19,8 @@ module.exports = {
     },
     Article: {
         postedBy: ArticleHandler.postedBy
+    },
+    User: {
+        listArticles: UserHandler.listArticles
     }
 };
