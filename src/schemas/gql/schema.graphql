@@ -1,0 +1,17 @@
+# import User from "user.graphql"
+# import Post from "article.graphql"
+
+type Query {
+    user(id: ID!): User!
+    users: [User]!
+    article(id: ID!): Article
+    articles: [Article]
+}
+
+type Mutation {
+    addArticle(title: String!, content: String!, url: String!): Article!
+}
+
+type Subscription {
+    onAddedArticle: Article
+}

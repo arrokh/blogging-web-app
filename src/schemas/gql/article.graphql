@@ -1,0 +1,7 @@
+type Article {
+    id: ID!
+    postedBy: User!
+    title: String!
+    content: String!
+    url: String!
+}
