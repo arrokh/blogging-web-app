@@ -8,7 +8,7 @@ const resolvers = require('./resolvers/initialize');
 const server = new ApolloServer({
     typeDefs,
     resolvers,
-    context: request => request
+    context: request => request,
 });
 
 server.listen().then(({url}) => {
