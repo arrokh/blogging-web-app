@@ -1,0 +1,8 @@
+Login to mysql
+> mysql --user=alvin.arrokh --password=nasigoreng
+
+Select database
+> use bloggin_web_app
+
+Import database
+> source bloggin_web_app.sql
