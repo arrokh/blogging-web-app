@@ -8,10 +8,7 @@
   "private": true,
   "scripts": {
     "start": "nodemon src/index.js",
-    "start:ci": "node src/index.js",
-    "build-client": "rm -R public && npm run build --prefix client/app",
-    "dev": "concurrently \"nodemon server/index.js\" \"npm run start client/app\"",
-    "dev:con": "concurrently \"nodemon server/index.js\" \"npm run start --prefix client/app\""
+    "start:ci": "node src/index.js"
   },
   "dependencies": {
     "apollo-datasource": "^0.5.0",
