@@ -1,8 +1,0 @@
-Login to mysql
-> mysql --user=alvin.arrokh --password=nasigoreng
-
-Select database
-> use blogging_web_app
-
-Import database
-> source blogging_web_app.sql
