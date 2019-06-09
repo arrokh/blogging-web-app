@@ -9,4 +9,6 @@ ENV MYSQL_DATABASE blogging_web_app
 WORKDIR /app
 
 COPY blogging_web_app.sql /app/blogging_web_app.sql
-COPY todo /app/todo
+COPY init.sh /app/init.sh
+
+RUN chmod a+x init.sh

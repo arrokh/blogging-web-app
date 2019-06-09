@@ -10,4 +10,12 @@ docker build -t arrokh/bwa-db:1.0 .
 echo "================================================"
 echo "========== Build and run new container ========="
 echo "================================================"
-docker run -d --name bwa-db arrokh/bwa-db:1.0
+docker run -d -p 3306:3306 --name bwa-db arrokh/bwa-db:1.0
+echo "================================================"
+echo "===================== Logs ====================="
+echo "================================================"
+docker ps
+
+read 
+
+docker exec -it bwa-db bash
